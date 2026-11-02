@@ -1624,3 +1624,4 @@ export const INITIAL_ACTIVITY_LOGS: ActivityLog[] = [
     createdAt: getISODateOffset(-30),
   },
 ];
+

@@ -270,3 +270,4 @@ export interface ActivityLog {
   entityId?: string;
   createdAt: string;
 }
+

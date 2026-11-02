@@ -151,3 +151,4 @@ All keys are prefixed with `medicare.`:
 - **Browser LocalStorage is client-accessible and unencrypted.**
 - No real medical documents, clinical evaluations, or payment card numbers are collected or stored.
 - Password hashes in this demo are marked specifically for prototype authentication and must be replaced with Argon2 / bcrypt / OAuth2 in production.
+

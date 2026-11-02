@@ -183,3 +183,4 @@ export class ProductService {
     return { success: true, isActive: prod.isActive };
   }
 }
+

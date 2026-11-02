@@ -236,3 +236,4 @@ export class DoctorService {
     return { success: true, doctor: newDoc };
   }
 }
+

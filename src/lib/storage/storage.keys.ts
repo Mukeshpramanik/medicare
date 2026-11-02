@@ -16,3 +16,4 @@ export const STORAGE_KEYS = {
 
 export type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];
 export const CURRENT_SEED_VERSION = '1.0.0';
+

@@ -310,3 +310,4 @@ export class AppointmentService {
     return { success: true, appointment: updatedApt };
   }
 }
+

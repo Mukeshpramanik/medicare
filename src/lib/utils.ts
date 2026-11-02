@@ -147,3 +147,4 @@ export function getPrescriptionStatusBadge(status: PrescriptionStatus): { label:
       return { label: status, bg: 'bg-gray-100', text: 'text-gray-700', border: 'border-gray-200' };
   }
 }
+

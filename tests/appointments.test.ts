@@ -123,3 +123,4 @@ describe('Appointment Workflows & Slot Integrity', () => {
     expect(DoctorService.getSlotById(slot2.id)?.isBooked).toBe(true);
   });
 });
+

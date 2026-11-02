@@ -231,3 +231,4 @@ When migrating MediCare to a production architecture:
 2. **Authentication:** Replace mock password comparisons with NextAuth.js / Auth0 / Supabase Auth using Argon2 password hashing and HTTP-only JWT cookies.
 3. **Payments:** Swap the simulation provider in `PaymentService` with official Stripe / Razorpay Webhooks.
 4. **Prescription Storage:** Store uploaded documents in an S3-compatible bucket (AWS S3 / Google Cloud Storage) with presigned read URLs and HIPAA-compliant encryption at rest.
+

@@ -111,3 +111,4 @@ export function getAnalyticsData() {
     revenueTimeline: last7Days,
   };
 }
+

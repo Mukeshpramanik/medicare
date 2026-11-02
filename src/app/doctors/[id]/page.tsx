@@ -17,6 +17,7 @@ import {
   AlertCircle,
   CreditCard,
   Lock,
+  Stethoscope,
 } from 'lucide-react';
 import { DoctorService } from '@/features/doctors/doctor.service';
 import { AppointmentService } from '@/features/appointments/appointment.service';
@@ -138,13 +139,53 @@ export default function DoctorDetailPage() {
   };
 
   if (!doctor) {
+    const recommendedDoctors = DoctorService.getActiveDoctors().slice(0, 3);
     return (
-      <div className="max-w-7xl mx-auto px-4 py-16 text-center">
-        <h2 className="text-xl font-bold text-slate-900">Doctor not found</h2>
-        <p className="text-sm text-slate-500 mt-2">The requested doctor profile does not exist or has been removed.</p>
-        <Link href="/doctors" className="mt-4 inline-block">
-          <Button variant="primary">Return to Doctor Directory</Button>
-        </Link>
+      <div className="max-w-4xl mx-auto px-4 py-16 text-center space-y-8">
+        <div className="w-16 h-16 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto border border-amber-200">
+          <Stethoscope className="w-8 h-8" />
+        </div>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-extrabold text-slate-900">Doctor Profile Not Found</h2>
+          <p className="text-sm text-slate-500 max-w-md mx-auto">
+            The requested doctor profile (ID: <code className="text-slate-800 font-mono bg-slate-100 px-1.5 py-0.5 rounded">{doctorId}</code>) does not exist or has been deactivated.
+          </p>
+        </div>
+
+        <div className="flex justify-center gap-3">
+          <Link href="/doctors">
+            <Button variant="primary">Browse All Specialists</Button>
+          </Link>
+          <Link href="/">
+            <Button variant="outline">Back to Homepage</Button>
+          </Link>
+        </div>
+
+        {recommendedDoctors.length > 0 && (
+          <div className="pt-8 border-t border-slate-200 text-left">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4 text-center">
+              Available Medical Specialists You Can Consult
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {recommendedDoctors.map((doc) => (
+                <div key={doc.id} className="p-4 rounded-2xl border border-slate-200 bg-white flex flex-col justify-between">
+                  <div className="flex items-center gap-3 mb-2">
+                    <img src={doc.avatar} alt={doc.name} className="w-12 h-12 rounded-xl object-cover" />
+                    <div>
+                      <h4 className="font-bold text-xs text-slate-900">{doc.name}</h4>
+                      <p className="text-[11px] text-tealbrand-700">{doc.specialization}</p>
+                    </div>
+                  </div>
+                  <Link href={`/doctors/${doc.id}`} className="mt-2">
+                    <Button variant="outline" size="sm" className="w-full text-xs">
+                      View Open Slots
+                    </Button>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
@@ -557,3 +598,4 @@ export default function DoctorDetailPage() {
     </div>
   );
 }
+

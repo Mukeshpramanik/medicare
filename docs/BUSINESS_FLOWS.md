@@ -140,3 +140,4 @@ When a patient reschedules an existing appointment:
    - Sets `newSlot.isBooked = true` (reserving the new slot).
    - Updates `appointment.date`, `appointment.time`, and appends an entry to `appointment.statusHistory`.
    - Dispatches in-app notification to patient.
+

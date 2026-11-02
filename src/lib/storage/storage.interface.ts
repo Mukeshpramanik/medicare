@@ -6,3 +6,4 @@ export interface StorageAdapter {
   subscribe(key: string, callback: (newValue: unknown) => void): () => void;
   notifySubscribers(key: string, value: unknown): void;
 }
+
