@@ -62,13 +62,53 @@ export default function ProductDetailPage() {
   };
 
   if (!product) {
+    const recommendedProducts = ProductService.getActiveProducts().slice(0, 3);
     return (
-      <div className="max-w-7xl mx-auto px-4 py-16 text-center">
-        <h2 className="text-xl font-bold text-slate-900">Product not found</h2>
-        <p className="text-sm text-slate-500 mt-2">The requested catalog item does not exist.</p>
-        <Link href="/products" className="mt-4 inline-block">
-          <Button variant="primary">Return to Healthcare Store</Button>
-        </Link>
+      <div className="max-w-4xl mx-auto px-4 py-16 text-center space-y-8">
+        <div className="w-16 h-16 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mx-auto border border-amber-200">
+          <Package className="w-8 h-8" />
+        </div>
+        <div className="space-y-2">
+          <h2 className="text-2xl font-extrabold text-slate-900">Healthcare Product Not Found</h2>
+          <p className="text-sm text-slate-500 max-w-md mx-auto">
+            The requested product (ID: <code className="text-slate-800 font-mono bg-slate-100 px-1.5 py-0.5 rounded">{productId}</code>) could not be found or has been archived from the catalog.
+          </p>
+        </div>
+
+        <div className="flex justify-center gap-3">
+          <Link href="/products">
+            <Button variant="primary">Browse Full Catalog</Button>
+          </Link>
+          <Link href="/">
+            <Button variant="outline">Back to Homepage</Button>
+          </Link>
+        </div>
+
+        {recommendedProducts.length > 0 && (
+          <div className="pt-8 border-t border-slate-200 text-left">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4 text-center">
+              Popular Healthcare Items in Catalog
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {recommendedProducts.map((p) => (
+                <div key={p.id} className="p-4 rounded-2xl border border-slate-200 bg-white flex flex-col justify-between">
+                  <div className="flex items-center gap-3 mb-2">
+                    <img src={p.imageUrl} alt={p.name} className="w-12 h-12 rounded-xl object-cover" />
+                    <div>
+                      <h4 className="font-bold text-xs text-slate-900 line-clamp-1">{p.name}</h4>
+                      <p className="text-[11px] font-bold text-slate-700">{formatCurrency(p.price)}</p>
+                    </div>
+                  </div>
+                  <Link href={`/products/${p.id}`} className="mt-2">
+                    <Button variant="outline" size="sm" className="w-full text-xs">
+                      View Details
+                    </Button>
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     );
   }
